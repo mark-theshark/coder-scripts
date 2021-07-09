@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: coder-root
+  namespace: coder # change to your Coder deployment namespace
+spec:
+  secretName: coder-root-cert  # Your Coder base url secret name
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  dnsNames:
+    - "docker-desktop-mark.demo.coder.com" # Your base domain for Coder
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

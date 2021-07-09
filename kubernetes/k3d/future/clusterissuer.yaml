@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: mark-k3d-macos@coder.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: gclouddnsissuersecret
+    solvers:
+    - dns01:
+        cloudDNS:
+          project: coder-demo-1
+          serviceAccountSecretRef:
+            name: clouddns-dns01-solver-svc-acct
+            key: key.json
+      selector:
+        dnsZones:
+          # Only use this issuer for the subdomain only
+          - "docker-desktop-mark.demo.coder.com"

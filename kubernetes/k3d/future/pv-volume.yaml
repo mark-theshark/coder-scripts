@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: k3d-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: mac-local-storage
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "~/documents/dev_and_debug/kubernetes/install/k3d/mnt/data"

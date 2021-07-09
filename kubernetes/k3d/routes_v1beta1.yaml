@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: web-ingress
+  namespace: "coder"
+spec:
+  rules:
+  - host: "local.coder"
+  - http:
+      paths:
+      - path: /proxy/
+        backend:
+          serviceName: envproxy
+          servicePort: 8080
+      - path: /api/
+        backend:
+          serviceName: cemanager
+          servicePort: 8080
+      - path: /auth/
+        backend:
+          serviceName: cemanager
+          servicePort: 8080
+      - path: /
+        backend:
+          serviceName: dashboard
+          servicePort: 3000  
+  - host: "*.local.coder"
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: envproxy
+          servicePort: 8080
