@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "Janky k3d install script by Mark Milligan, hacked from bits of one in m repo and other bits."
+echo "Example k3d install"
 echo ""
 echo ""
 echo "Does not include Dev URLs setup, only running on localhost"
@@ -41,7 +41,6 @@ echo ""
 k3d cluster create coder \
   --api-port 6550 \
   -p "80:80@loadbalancer" \
-  -p "22:22@loadbalancer" \
   -p "5349:5349@loadbalancer"
 
 echo ""

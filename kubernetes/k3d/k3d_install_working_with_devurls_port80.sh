@@ -42,6 +42,7 @@ echo ""
 k3d cluster create local-coder \
   --api-port 6550 \
   -p "80:80@loadbalancer" \
+  -p "22:22@loadbalancer" \
   -p "5349:5349@loadbalancer"
 
 echo ""
